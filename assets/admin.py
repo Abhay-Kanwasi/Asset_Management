@@ -1,5 +1,7 @@
 from django.contrib import admin
+
 from .models import Asset, Notification, Violation
+
 
 @admin.register(Asset)
 class AssetAdmin(admin.ModelAdmin):

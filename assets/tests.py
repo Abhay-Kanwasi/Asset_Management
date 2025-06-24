@@ -1,16 +1,15 @@
 from datetime import timedelta
-
 from unittest.mock import patch
 
+from django.core.exceptions import ValidationError
+from django.db import IntegrityError
 from django.test import TestCase
 from django.utils import timezone
-from django.db import IntegrityError
-from django.core.exceptions import ValidationError
-
 from rest_framework import status
 from rest_framework.test import APITestCase
 
 from .models import Asset, Notification, Violation
+
 
 class AssetModelTestCase(TestCase):
     def setUp(self):

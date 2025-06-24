@@ -1,17 +1,16 @@
 import logging
-from rest_framework import viewsets, status
-from rest_framework.decorators import api_view, action
-from rest_framework.response import Response
-from django.utils import timezone
 from datetime import timedelta
+
 from django.db import transaction
+from django.utils import timezone
 from drf_yasg.utils import swagger_auto_schema
-from drf_yasg import openapi
+from rest_framework import status, viewsets
+from rest_framework.decorators import action, api_view
+from rest_framework.response import Response
+
 from .models import Asset, Notification, Violation
-from .serializers import (
-    AssetSerializer, NotificationSerializer, ViolationSerializer,
-    CheckResultSerializer
-)
+from .serializers import (AssetSerializer, CheckResultSerializer,
+                          NotificationSerializer, ViolationSerializer)
 
 logger = logging.getLogger(__name__)
 
@@ -184,11 +183,11 @@ def run_checks(request):
             
             serializer = CheckResultSerializer(data=result_data)
             serializer.is_valid(raise_exception=True)
-            
+            logger.info('Run checks successfull.')
             return Response(serializer.data, status=status.HTTP_200_OK)
             
     except Exception as error:
-        print(f'Error during running checks: {str(error)}')
+        logger.error(f'Error during running checks: {str(error)}')
         return Response(
             {'error': f'Error running checks: {str(error)}'}, 
             status=status.HTTP_500_INTERNAL_SERVER_ERROR

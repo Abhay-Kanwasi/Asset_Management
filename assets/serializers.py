@@ -1,6 +1,8 @@
-from rest_framework import serializers
 from django.utils import timezone
+from rest_framework import serializers
+
 from .models import Asset, Notification, Violation
+
 
 class AssetSerializer(serializers.ModelSerializer):
     is_expired = serializers.ReadOnlyField()
