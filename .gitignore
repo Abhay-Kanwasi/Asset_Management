@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# Django migrations
+*/migrations/
+!*/migrations/__init__.py
+
+# Environments
+.env
+*.env
+venv/
+ENV/
+env/
+venv/
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+logs/
+
+# Database (SQLite)
+*.sqlite3
+
+# Django static and media files (if generated locally)
+staticfiles/
+static/
+media/
